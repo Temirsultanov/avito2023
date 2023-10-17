@@ -1,6 +1,6 @@
 import './style.scss'
 
-export const Game = () => {
+export const Game: React.FC = () => {
 	return (
 		<section>
 			<h1>Страница игры</h1>
