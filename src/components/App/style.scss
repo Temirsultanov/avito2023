@@ -1,0 +1,44 @@
+.app {
+	$header_height: 50px;
+
+	&__header {
+		width: 100%;
+		height: $header_height;
+		border-bottom: 1px solid #292b32;
+
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 2;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background-color: #1a1a1b;
+
+		& a {
+			display: block;
+			height: 30px;
+
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+
+		& .logo {
+			height: 100%;
+		}
+	}
+
+	&__main {
+		padding-top: $header_height;
+		min-height: 100svh;
+
+		display: flex;
+		flex-direction: column;
+
+		background-color: #0e0d14;
+		color: rgb(220, 220, 220);
+	}
+}

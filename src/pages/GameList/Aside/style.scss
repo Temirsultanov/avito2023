@@ -1,0 +1,55 @@
+@import '../../../lib/variables';
+
+.filterGames {
+	width: 300px;
+	min-height: 200px;
+	max-height: calc(100vh - 90px);
+	padding: 24px;
+	border-radius: $border_radius;
+
+	// background-color: #131317;
+	// $colorBgBase: #0f0f13;
+
+	overflow-y: auto;
+	background-color: #191824;
+
+	&__title {
+		margin-bottom: 20px;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__label {
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+
+	&__select {
+		margin-bottom: 25px;
+	}
+
+	&__resetButton {
+		margin-top: 15px;
+		padding: 0;
+		border: none;
+		outline: none;
+
+		color: #ccc;
+		font-size: 14px;
+		background-color: transparent;
+		cursor: pointer;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+}
+
+@media (max-width: 950px) {
+	.filterGames {
+		width: 100%;
+	}
+}

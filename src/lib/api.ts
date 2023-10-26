@@ -1,32 +1,34 @@
-import { Game_From_API, Game_Preview_From_API } from './types'
+import { Game, Game_Preview } from './types'
 
-const API_URL_BASE = 'https://free-to-play-games-database.p.rapidapi.com/api/'
-const API_OPTIONS = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '15f8274c11mshd3837e4d2321dd3p1902e2jsnb4af93f8aa0a',
-		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-	},
-}
+const API_URL_BASE = 'http://127.0.0.1:8000/'
 
-const fetchData = async (url: string) => {
-	const response = await fetch(url, API_OPTIONS)
+const fetchData = async (url: string, signal: AbortSignal | undefined) => {
+	const response = await fetch(url, {
+		method: 'GET',
+		signal,
+	})
+
 	if (response.status !== 200) return null
 
 	const result = await response.json()
 	return result
 }
 
-export const fetchGames = async (): Promise<null | Game_Preview_From_API[]> => {
-	const url = API_URL_BASE + 'games'
-	const data = await fetchData(url)
+export const fetchGames = async (
+	sorting: string,
+	platform: string,
+	tag: string,
+	signal: AbortSignal,
+): Promise<null | Game_Preview[]> => {
+	const url = API_URL_BASE + `games?sort-by=${sorting}&platform=${platform}&tag=${tag}`
+	const data = await fetchData(url, signal)
 
 	return data
 }
 
-export const fetchGameById = async (id: number): Promise<null | Game_From_API> => {
+export const fetchGameById = async (id: number, signal: AbortSignal): Promise<null | Game> => {
 	const url = API_URL_BASE + 'game?id=' + id
-	const data = await fetchData(url)
+	const data = await fetchData(url, signal)
 
 	return data
 }

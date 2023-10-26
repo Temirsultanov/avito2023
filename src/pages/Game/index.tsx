@@ -1,33 +1,53 @@
-import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { fetchGameById, getGame, getGameStatus } from '../../store/gameSlice'
+import { Content } from './Content'
+import { getGameStatus, clear as clearGame, getGame, fetchGameById } from '../../store/gameSlice'
 import { useAppDispatch } from '../../store'
+
 import './style.scss'
 
 export const Game: React.FC = () => {
 	const dispatch = useAppDispatch()
-	const navigate = useNavigate()
 
-	const { gameId } = useParams()
+	const { gameId: gameIdString } = useParams()
+	const gameId = Number(gameIdString)
+
 	const game = useSelector(getGame)
 	const gameStatus = useSelector(getGameStatus)
+	const abort = useRef<null | (() => void)>(null)
 
 	useEffect(() => {
-		if (gameStatus === 'idle') dispatch(fetchGameById(Number(gameId)))
-		else if (gameStatus === 'success' && game === null) {
-			navigate('/games')
+		abort.current = dispatch(fetchGameById(gameId)).abort
+
+		return () => {
+			dispatch(clearGame())
+			abort.current?.()
 		}
-	}, [dispatch, navigate, gameId, game, gameStatus])
+	}, [dispatch, gameId])
 
-	if (game === null) return null
+	let content
+	if (game !== null) content = <Content className='game__content' game={game} />
+	else if (gameStatus === 'loading' || gameStatus === 'idle') content = <Loading />
+	else content = <InvalidRoute />
 
+	return <section className='game'>{content}</section>
+}
+
+const InvalidRoute = () => {
 	return (
-		<section>
-			<h1>{game.title}</h1>
-			<p>Разработчик: {game.developer}</p>
-			<img src={game.thumbnail} alt='' />
-		</section>
+		<div className='game__invalid'>
+			<h1>Упс: что-то пошло не так...</h1>
+			<Link to='/games'>К списку игр</Link>
+		</div>
+	)
+}
+
+const Loading = () => {
+	return (
+		<div className='game__loading'>
+			<p>Загрузка...</p>
+		</div>
 	)
 }

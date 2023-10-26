@@ -13,12 +13,12 @@ export type Game = Game_Preview & {
 	minSystemRequirements: Min_System_Requirements
 }
 
-type Screenshot = {
+export type Screenshot = {
 	id: number
 	image: string
 }
 
-type Min_System_Requirements = {
+export type Min_System_Requirements = {
 	graphics: string
 	memory: string
 	os: string
@@ -26,33 +26,24 @@ type Min_System_Requirements = {
 	storage: string
 }
 
-export type Game_From_API = {
-	id: number
-	title: string
-	release_date: string
-	publisher: string
-	genre: string
-	thumbnail: string
-	developer: string
-	screenshots: Screenshot[]
-	mininum_system_requirements: Min_System_Requirements
-	description: string
-	freetogame_profile_url: string
-	game_url: string
-	platform: string
-	short_description: string
-	status: string
+export type Sorting_Type = 'relevance' | 'alphabetical' | 'release-date' | 'popularity'
+export type Sortings = {
+	[index in Sorting_Type]: string
 }
 
-export type Game_Preview_From_API = {
-	id: number
-	developer: string
-	freetogame_profile_url: string
-	genre: string
-	platform: string
-	publisher: string
-	release_date: string
-	short_description: string
-	thumbnail: string
-	title: string
+export type Platform_Type = 'all' | 'pc' | 'browser'
+export type Platforms = {
+	[index in Platform_Type]: string
+}
+
+//prettier-ignore
+export type Category_Type = 'mmorpg' | 'shooter' | 'moba' | 'anime' | 'battle-royale' | 'strategy' | 'fantasy' | 'sci-fi' | 'card' | 'racing' | 'fighting' | 'social' | 'sports'
+export type Categories = {
+	[index in Category_Type]: string
+}
+
+// prettier-ignore
+export type Tag_Type = 'sandbox'| 'open-world'| 'survival'| 'pvp'| 'pve'| 'pixel'| 'voxel'| 'zombie'| 'turn-based'| 'first-person'| 'third-Person'| 'top-down'| 'tank'| 'space'| 'sailing'| 'side-scroller'| 'superhero'| 'permadeath' | 'mmo'| 'mmofps'| 'mmotps'| '3d'| '2d' | 'action-rpg'| 'action'| 'military'| 'martial-arts'| 'flight'| 'low-spec'| 'tower-defense'| 'horror'| 'mmorts'
+export type Tags = {
+	[index in Tag_Type]: string
 }

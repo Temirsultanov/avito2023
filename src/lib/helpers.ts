@@ -1,27 +1,16 @@
-import { Game, Game_From_API, Game_Preview, Game_Preview_From_API } from './types'
-
-export const transformGameFromAPIViewToAppView = (gameFromAPI: Game_From_API): Game => {
-	return {
-		id: gameFromAPI.id,
-		title: gameFromAPI.title,
-		releaseDate: gameFromAPI.release_date,
-		publisher: gameFromAPI.publisher,
-		genre: gameFromAPI.genre,
-		thumbnail: gameFromAPI.thumbnail,
-		developer: gameFromAPI.developer,
-		screenshots: gameFromAPI.screenshots,
-		minSystemRequirements: gameFromAPI.mininum_system_requirements,
-	}
+export function transformToValueLabel(obj: { [index: string]: string }) {
+	return Object.entries(obj).map((entry) => ({
+		value: entry[0],
+		label: entry[1],
+	}))
 }
 
-// prettier-ignore
-export const transformGamePreviewsFromAPIViewToAppView = (gamePreviewsFromAPI: Game_Preview_From_API[]): Game_Preview[] => {
-	return gamePreviewsFromAPI.map(gamePreviewFromAPI => ({
-		id: gamePreviewFromAPI.id,
-		title: gamePreviewFromAPI.title,
-		releaseDate: gamePreviewFromAPI.release_date,
-		publisher: gamePreviewFromAPI.publisher,
-		genre: gamePreviewFromAPI.genre,
-		thumbnail: gamePreviewFromAPI.thumbnail,
-	}))
+export function transformToSearchParams(sorting: string, platform: string, tags: string[]) {
+	const searchParams: { [index: string]: string } = {}
+
+	if (sorting) searchParams['sort-by'] = sorting
+	if (platform) searchParams['platform'] = platform
+	if (tags.length > 0) searchParams['tag'] = tags.join('.')
+
+	return searchParams
 }

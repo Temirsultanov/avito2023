@@ -1,0 +1,11 @@
+.gameBackdrop {
+	width: 100%;
+	height: 100%;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	backdrop-filter: blur(4px);
+	background: radial-gradient(#000000a6 0%, #000000be 30%, rgb(0, 0, 0) 95%);
+}

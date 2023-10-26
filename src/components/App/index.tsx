@@ -1,14 +1,18 @@
+import { Outlet, Link } from 'react-router-dom'
+import Logo from '../../assets/logo.png'
 import './style.scss'
 
-interface IProps {
-	children: React.ReactNode
-}
-
-export const App = ({ children }: IProps) => {
+export const App = () => {
 	return (
 		<>
-			<header className='app__header'>Header</header>
-			<main className='app__main'>{children}</main>
+			<header className='app__header'>
+				<Link to='/'>
+					<img className='logo' src={Logo} alt='' />
+				</Link>
+			</header>
+			<main className='app__main'>
+				<Outlet />
+			</main>
 		</>
 	)
 }

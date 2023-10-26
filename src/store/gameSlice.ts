@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { fetchGameById as fetchGameByIdFromServer } from '../lib/api'
-import { transformGameFromAPIViewToAppView } from '../lib/helpers'
 import { Game } from '../lib/types'
 import { IStore } from './index'
 
@@ -16,9 +15,11 @@ const initialState: Slice_State = {
 	error: false,
 }
 
-export const fetchGameById = createAsyncThunk('game/fetchGame', async (id: number) => {
-	const response = await fetchGameByIdFromServer(id)
-	return response === null ? null : transformGameFromAPIViewToAppView(response)
+export const fetchGameById = createAsyncThunk('game/fetchGame', async (id: number, thunkAPI) => {
+	const response = await fetchGameByIdFromServer(id, thunkAPI.signal)
+	if (response === null) throw new Error('Ошибка: ')
+
+	return response
 })
 
 export const gameSlice = createSlice({
@@ -32,10 +33,25 @@ export const gameSlice = createSlice({
 		},
 	},
 	extraReducers(builder) {
-		builder.addCase(fetchGameById.fulfilled, (state, action) => {
-			state.data = action.payload
-			state.status = 'success'
-		})
+		builder
+			.addCase(fetchGameById.pending, (state) => {
+				state.status = 'loading'
+			})
+			.addCase(fetchGameById.fulfilled, (state, action) => {
+				state.status = action.payload === null ? 'rejected' : 'success'
+				state.error = action.payload === null
+				state.data = action.payload
+			})
+			.addCase(fetchGameById.rejected, (state, action) => {
+				if (action.meta.aborted) {
+					state.data = null
+					state.status = 'idle'
+					state.error = false
+				} else {
+					state.error = true
+					state.status = 'rejected'
+				}
+			})
 	},
 })
 

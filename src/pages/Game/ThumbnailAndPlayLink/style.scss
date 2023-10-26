@@ -1,0 +1,62 @@
+@import '../../../lib/variables';
+
+.gameThumbnailAndPlayLink {
+	display: flex;
+	flex-direction: column;
+
+	&__thumbnail {
+		width: 380px;
+		min-height: 214px;
+		height: auto;
+		margin-bottom: 15px;
+		border-radius: $border_radius;
+	}
+
+	&__playLink {
+		$firstColor: #6e0c21;
+		$secondColor: #191723;
+
+		height: 55px;
+		border-radius: $border_radius;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background-image: linear-gradient(
+			-45deg,
+			$firstColor 0%,
+			$secondColor 25%,
+			$firstColor 50%,
+			$secondColor 75%,
+			$firstColor 100%
+		);
+
+		background-size: 500%;
+		background-position: 0 0;
+
+		animation: 10s playLink linear infinite;
+		text-decoration: none;
+
+		&:hover {
+			animation-duration: 5s;
+		}
+	}
+}
+
+@keyframes playLink {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 500% 0;
+	}
+}
+
+@media (max-width: 600px) {
+	.gameThumbnailAndPlayLink {
+		&__thumbnail {
+			width: 100%;
+		}
+	}
+}

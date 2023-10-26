@@ -1,0 +1,95 @@
+@import '../../../lib/variables';
+
+.gamePreview {
+	max-width: 100%;
+	width: 100%;
+	padding-bottom: 20px;
+	border-radius: $border_radius;
+
+	display: flex;
+	flex-direction: column;
+
+	position: relative;
+	overflow: hidden;
+
+	color: #eee;
+	background-color: #1a1a1a68;
+	text-decoration: none;
+
+	transition: 0.4s cubic-bezier(0.4, 0, 0, 1);
+
+	&__thumbnail {
+		width: 100%;
+		min-height: 13vw;
+		height: auto;
+		margin-bottom: 20px;
+		border-radius: $border_radius;
+	}
+
+	&__content {
+		max-width: 100%;
+
+		display: flex;
+		flex-direction: column;
+		padding: 0 16px;
+	}
+
+	&__genre {
+		padding: 7px 12px;
+		border-radius: $border_radius;
+
+		position: absolute;
+		top: 10px;
+		left: 10px;
+
+		font-size: 14px;
+		text-transform: lowercase;
+		color: #ffba18;
+
+		opacity: 0.9;
+		background-image: linear-gradient(135deg, #a21b3b, #191638);
+
+		transition: 0.3s;
+	}
+
+	&__title {
+		margin-bottom: 5px;
+
+		font-size: 22px;
+
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	&__publisher {
+		margin-bottom: 16px;
+
+		font-size: 16px;
+		color: #999;
+
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	&__releaseDate {
+		text-align: left;
+	}
+
+	&:hover {
+		transform: scale(1.02) translateY(-5px);
+		background-color: #191824;
+
+		& .gamePreview__genre {
+			color: #ffba18;
+			opacity: 1;
+		}
+	}
+
+	&:focus {
+		outline: none;
+		transform: scale(1.02) translateY(-5px);
+		background-color: #191824;
+	}
+}
