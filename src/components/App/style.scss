@@ -18,8 +18,8 @@
 		background-color: #1a1a1b;
 
 		& a {
-			display: block;
 			height: 30px;
+			display: block;
 
 			&:hover {
 				opacity: 0.8;
@@ -32,8 +32,8 @@
 	}
 
 	&__main {
-		padding-top: $header_height;
 		min-height: 100svh;
+		padding-top: $header_height;
 
 		display: flex;
 		flex-direction: column;

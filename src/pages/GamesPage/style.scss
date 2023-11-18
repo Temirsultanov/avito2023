@@ -1,4 +1,4 @@
-.gameList {
+.gamesPage {
 	padding-top: 40px;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -47,7 +47,7 @@
 }
 
 @media (max-width: 1600px) {
-	.gameList {
+	.gamesPage {
 		&__list {
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
 		}
@@ -55,7 +55,7 @@
 }
 
 @media (max-width: 1200px) {
-	.gameList {
+	.gamesPage {
 		&__list {
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 		}
@@ -63,7 +63,7 @@
 }
 
 @media (max-width: 950px) {
-	.gameList {
+	.gamesPage {
 		&__content {
 			flex-direction: column;
 		}
@@ -79,7 +79,7 @@
 }
 
 @media (max-width: 900px) {
-	.gameList {
+	.gamesPage {
 		&__list {
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 		}
@@ -87,7 +87,7 @@
 }
 
 @media (max-width: 550px) {
-	.gameList {
+	.gamesPage {
 		&__title {
 			font-size: 28px;
 		}

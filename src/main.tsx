@@ -8,6 +8,7 @@ import { theme } from './lib/theme'
 import { store } from './store'
 import { createRouter } from './router'
 import { App } from './components/App'
+
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

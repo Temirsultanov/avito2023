@@ -5,22 +5,22 @@ import { AdditionalInfo } from '../AdditionalInfo'
 import { Screenshots } from '../Screenshots'
 import { SystemRequirements } from '../SystemRequirements'
 
-import { Game } from '../../../lib/types'
+import { Game as GameType } from '../../../lib/types'
 import './style.scss'
 
 interface IProps {
 	className: string
-	game: Game
+	game: GameType
 }
 
-export const Content = ({ className, game }: IProps) => {
+export const Game = ({ className, game }: IProps) => {
 	return (
-		<div className={'gameContent ' + className}>
-			<div className='gameContent__backgroundImage'>
+		<div className={'game ' + className}>
+			<div className='game__backgroundImage'>
 				<img src={game.thumbnail} alt={game.title} />
 			</div>
 			<Backdrop />
-			<div className='gameContent__container'>
+			<div className='game__container'>
 				<ThumbnailAndPlayLink
 					className='game__fixed'
 					thumbnailSrc={game.thumbnail}

@@ -1,18 +1,13 @@
 import { useDispatch } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
-import gameReducer, { Slice_State as Game_Slice_State } from './gameSlice'
-import gamesReducer, { Slice_State as Games_Slice_State } from './gamesSlice'
 
-export interface IStore {
-	game: Game_Slice_State
-	games: Games_Slice_State
-}
+import { apiSlice } from './apiSlice'
 
 export const store = configureStore({
 	reducer: {
-		game: gameReducer,
-		games: gamesReducer,
+		[apiSlice.reducerPath]: apiSlice.reducer,
 	},
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
 })
 
 export type AppDispatch = typeof store.dispatch

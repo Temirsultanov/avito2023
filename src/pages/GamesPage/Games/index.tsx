@@ -6,7 +6,7 @@ interface IProps {
 	games: Game_Preview[]
 }
 
-export const List = ({ className = '', games }: IProps) => {
+export const Games = ({ className = '', games }: IProps) => {
 	return (
 		<ul className={className}>
 			{games.map((game) => (

@@ -1,7 +1,8 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import { GameList } from './pages/GameList'
-import { Game } from './pages/Game'
+
+import { GamesPage } from './pages/GamesPage'
+import { GamePage } from './pages/GamePage'
 
 export const createRouter = (WrapElement: React.ElementType) => {
 	return createBrowserRouter([
@@ -10,15 +11,15 @@ export const createRouter = (WrapElement: React.ElementType) => {
 			children: [
 				{
 					path: '/',
-					element: <GameList />,
+					element: <GamesPage />,
 				},
 				{
 					path: '/games',
-					element: <GameList />,
+					element: <GamesPage />,
 				},
 				{
 					path: '/games/:gameId',
-					element: <Game />,
+					element: <GamePage />,
 				},
 			],
 		},
